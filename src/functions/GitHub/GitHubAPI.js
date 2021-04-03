@@ -124,6 +124,7 @@ export const updateGitHubIssueFromGanttTask = (
                 });
             } else {
                 if (gantt_task !== generateGanttTaskFromGitHub(issue_info)) {
+                  console.log("update");
                     axios
                         .post(
                             url,

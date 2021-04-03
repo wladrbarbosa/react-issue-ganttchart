@@ -76,6 +76,9 @@ export const updateGitHubDescriptionStringFromGanttTask = (
   if ('parent' in gantt_task) {
     task.parent = parseInt(removeFirstSharp(gantt_task.parent));
   }
+  if ('dependon' in gantt_task) {
+    task.dependon = gantt_task.dependon;
+  }
   description = replacePropertyInDescriptionString(description, task);
   return description;
 };
