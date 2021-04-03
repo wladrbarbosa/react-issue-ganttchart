@@ -3,6 +3,7 @@ import {
   getNumberFromDescriptionYaml,
   removeFirstSharp,
   replacePropertyInDescriptionString,
+  getDependonFromDescriptionYaml,
 } from '../Common/Parser.js';
 import {
   calculateDueDate,
@@ -38,6 +39,23 @@ export const generateGanttTaskFromGitHub = (description, issue_info) => {
     update: getGanttUpdateDate(issue_info.created_at,issue_info.updated_at),
   };
   return gantt_task;
+};
+
+export const generateLinkFromGitHub = (issue_info) => {
+  const link= [];
+  let dependon = [];
+  dependon = getDependonFromDescriptionYaml(issue_info.body, 'dependon');
+  if (dependon != null) {
+     //let data = [];
+    for (let i = 0; i < dependon.length; i++) {
+        let data = [];
+      data.type='0';
+      data.target = '#' +issue_info.number;
+      data.source='#'+dependon[i];
+     link.push(data);
+  }
+    return link; 
+}
 };
 
 export const updateGitHubDescriptionStringFromGanttTask = (

@@ -707,7 +707,7 @@ div.dhx_modal_cover {
   cursor: pointer;
 }
 .gantt_line_wrapper div {
-  background-color: #585858;
+  background-color: #868181dc;
 }
 .gantt_task_link:hover .gantt_line_wrapper div {
   box-shadow: 0 0 5px 0 #00e1ff;
@@ -773,7 +773,7 @@ div.dhx_modal_cover {
 }
 .gantt_link_target.link_finish_allow,
 .gantt_link_target.link_start_allow {
-  box-shadow: 0 0 3px #585858;
+  box-shadow: 0 0 3px #868181dc;
 }
 .gantt_link_target.link_finish_deny,
 .gantt_link_target.link_start_deny {
@@ -781,8 +781,8 @@ div.dhx_modal_cover {
 }
 .link_finish_allow .gantt_link_control.task_end_date div,
 .link_start_allow .gantt_link_control.task_start_date div {
-  background-color: #585858;
-  border-color: #585858;
+  background-color: #868181dc;
+  border-color: #868181dc;
 }
 .link_finish_deny .gantt_link_control.task_end_date div,
 .link_start_deny .gantt_link_control.task_start_date div {
@@ -794,28 +794,28 @@ div.dhx_modal_cover {
   border-top-color: transparent !important;
   border-right-color: transparent !important;
   border-bottom-color: transparent !important;
-  border-left-color: #585858;
+  border-left-color: #868181dc;
   margin-top: -1px;
 }
 .gantt_link_arrow_left {
   border-width: 4px 8px 4px 0;
   margin-top: -1px;
   border-top-color: transparent !important;
-  border-right-color: #585858;
+  border-right-color: #868181dc;
   border-bottom-color: transparent !important;
   border-left-color: transparent !important;
 }
 .gantt_link_arrow_up {
   border-width: 0 4px 8px;
-  border-color: transparent transparent #585858;
+  border-color: transparent transparent #868181dc;
   border-top-color: transparent !important;
   border-right-color: transparent !important;
-  border-bottom-color: #585858;
+  border-bottom-color: #868181dc;
   border-left-color: transparent !important;
 }
 .gantt_link_arrow_down {
   border-width: 4px 8px 0 4px;
-  border-top-color: #585858;
+  border-top-color: #868181dc;
   border-right-color: transparent !important;
   border-bottom-color: transparent !important;
   border-left-color: transparent !important;
@@ -870,7 +870,7 @@ div.dhx_modal_cover {
 }
 .gantt_link_direction {
   height: 0;
-  border: 0 none #585858;
+  border: 0 none #868181dc;
   border-bottom-style: dashed;
   border-bottom-width: 2px;
   transform-origin: 0 0;

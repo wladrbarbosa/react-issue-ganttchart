@@ -54,6 +54,9 @@ const App = (props) => {
       state.selected_assignee
     )
       .then((issues) => {
+        console.log(issues);
+        // console.log(links);
+        // dispatch({ type: 'setLinks', value: links });
         dispatch({ type: 'setIssue', value: issues });
       })
       .catch((err) => {

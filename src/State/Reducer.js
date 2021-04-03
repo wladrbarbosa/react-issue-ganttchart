@@ -30,6 +30,7 @@ export const initialState = {
   selected_assignee: {},
   issue: [],
   issue_columns: [],
+  links: [],
 };
 
 export const reducerFunc = (state, action) => {
@@ -81,7 +82,9 @@ export const reducerFunc = (state, action) => {
       return handleUpdateIssueByAPI(state, action);
     case 'setIssue':
       return { ...state, issue: action.value };
-      
+    case 'setLinks':
+      return { ...state, links: action.value };     
+
     case 'setStateFromURLQueryString':
       return setStateFromURLQueryString(
         state,
