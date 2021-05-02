@@ -8,6 +8,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Multiselect } from 'multiselect-react-dropdown';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { gantt } from 'dhtmlx-gantt';
 
 const Toolbar = (props) => {
   const { classes } = props;
@@ -81,19 +82,26 @@ const Toolbar = (props) => {
       />
       <ButtonGroup size="small" style={{ height: '34px' }}>
         <Button
+          // onClick={(e) => {
+          //   props.onZoomChange('Days');
+          // }}
           onClick={(e) => {
-            props.onZoomChange('Weeks');
+            gantt.config.show_grid = false;
+            gantt.render();
           }}
         >
-          Weeks
+          Gantt
         </Button>
         <Button
           onClick={(e) => {
-            props.onZoomChange('Days');
+            gantt.config.show_grid = true;
+            gantt.render();
           }}
         >
-          Days
+          FULL
         </Button>
+
+
       </ButtonGroup>
       <IconButton color="primary" style={{ verticalAlign: 'middle' }}>
         <CachedIcon

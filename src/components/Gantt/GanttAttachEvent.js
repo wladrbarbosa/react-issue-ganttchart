@@ -25,6 +25,10 @@ export const attachEvent = (gantt, props) => {
   gantt.attachEvent('onBeforeTaskUpdate', (id, mode, gantt_task) => {
   });
 
+gantt.attachEvent("onTaskRowClick", function(id,row){
+    console.log('aaa');
+});
+
   gantt.attachEvent('onAfterTaskMove', (id, parent) => {
     let gantt_task = gantt.getTask(id);
     if ('parent' in gantt_task) {

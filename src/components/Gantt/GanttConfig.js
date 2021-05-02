@@ -33,13 +33,15 @@ export const setGanttConfig = (gantt) => {
   gantt.config.order_branch = true;
   gantt.config.order_branch_free = true;
 
-  gantt.config.keep_grid_width = true;
-  gantt.config.grid_resize = true;
+  // gantt.config.keep_grid_width = true;
+  gantt.config.keep_grid_width = false;
+	gantt.config.grid_resize = true;
   gantt.config.open_tree_initially = true;
   gantt.config.fit_tasks = true;
-
+  
   gantt.config.sort = true;
-
+  gantt.config.show_grid = false; 
+  // gantt.config.reorder_grid_columns = true;
   gantt.config.columns = [
     {
       name: 'id',
@@ -78,7 +80,7 @@ export const setGanttConfig = (gantt) => {
       },
     },
     { name: 'assignee', label: 'Assignee', align: 'center', width: '130' },
-    { name: 'add', label: '', width: '40' },
+    { name: 'add', label: ' ', width: '40' },
   ];
 
   gantt.plugins({
