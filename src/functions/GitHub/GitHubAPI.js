@@ -20,9 +20,12 @@ import {
   replacePropertyInDescriptionString,
 } from '../Common/Parser.js';
 
-export const getGitHubIssueFromAPI = async (git_url, issue_info) => {
+export const getGitHubIssueFromAPI = async (git_url, issue_info, token) => {
   return axios
-    .get(getGitHubAPIURLIssuebyNumber(git_url, issue_info.number))
+    .get(getGitHubAPIURLIssuebyNumber(git_url, issue_info.number), {
+      headers: { Authorization: `token ${token}` },
+      data: {},
+    })
     .then((res) => {
       let links = [];
       const gantt_task = generateGanttTaskFromGitHub(res.data.body, issue_info);
@@ -49,16 +52,20 @@ export const getGitHubIssueFromAPI = async (git_url, issue_info) => {
 export const getGitHubIssuesFromAPI = async (
   git_url,
   selected_labels,
-  selected_assignee
+  selected_assignee,
+  token
 ) => {
   return axios
     .get(
-      getGitHubAPIURLIssueFilterd(git_url, selected_labels, selected_assignee)
+      getGitHubAPIURLIssueFilterd(git_url, selected_labels, selected_assignee), {
+        headers: { Authorization: `token ${token}` },
+        data: {},
+      }
     )
     .then((res) => {
       const promise_list = [];
       res.data.map((issue_info) => {
-        promise_list.push(getGitHubIssueFromAPI(git_url, issue_info));
+        promise_list.push(getGitHubIssueFromAPI(git_url, issue_info, token));
       });
       return Promise.all(promise_list);
     })
@@ -68,7 +75,10 @@ export const getGitHubIssuesFromAPI = async (
 };
 
 export const setGitHubLabelListOfRepoFromAPI = async (git_url, token) => {
-  return axios.get(getGitHubAPIURLLabel(git_url)).then((res) => {
+  return axios.get(getGitHubAPIURLLabel(git_url), {
+    headers: { Authorization: `token ${token}` },
+    data: {},
+  }).then((res) => {
     let labels = [];
     res.data.map((info) => {
       labels.push({ id: info.id, name: info.name });
@@ -112,7 +122,10 @@ export const updateGitHubIssueFromGanttTask = (
     removeFirstSharp(gantt_task.id)
   );
   axios
-    .get(url)
+    .get(url, {
+      headers: { Authorization: `token ${token}` },
+      data: {},
+    })
     .then((res) => {
       const issue_info = res.data;
       if (
