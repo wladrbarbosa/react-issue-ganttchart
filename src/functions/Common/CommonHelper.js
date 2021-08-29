@@ -90,25 +90,25 @@ export const adjustDateString = (date_str) => {
 
 export const getGanttStartDate = (start_date, due_date, created_at) => {
   let start_date_str = null;
-  if (start_date != null && due_date != null) {
+  if (isValidVariable(start_date)) {
     start_date_str = date2string(start_date);
-  } else {
+  } else if (isValidVariable(created_at)) {
     start_date_str = adjustDateString(created_at);
   }
   return start_date_str;
 };
 
 export const getGanttDueDate = (start_date, due_date, created_at) => {
-  let due_date_str = null;
-  if (start_date != null && due_date != null) {
-    due_date_str = new Date(due_date);
-  } else {
-    due_date_str = new Date(created_at);
+  let _due_date = null;
+  if (isValidVariable(due_date)) {
+    _due_date = new Date(due_date);
+  } else if (isValidVariable(created_at)) {
+    _due_date = new Date(created_at);
   }
-  return due_date_str;
+  return _due_date;
 };
 
-export const getGanttUpdateDate = (created_at,updated_at) => {
+export const getGanttUpdateDate = (created_at, updated_at) => {
   let updated_date_str = null;
   if (updated_at != null) {
     updated_date_str = adjustDateString(updated_at);
@@ -118,8 +118,14 @@ export const getGanttUpdateDate = (created_at,updated_at) => {
   return updated_date_str;
 };
 
-export const getGanttDuration = (start_date, due_date) => {
+export const getGanttDuration = (start_date, due_date, created_at) => {
   let duration = null;
+  if (!isValidVariable(due_date)) {
+    return null;
+  }
+  if (!isValidVariable(start_date)) {
+    start_date = created_at;
+  }
   if (start_date != null && due_date != null) {
     duration = calculateDuration(start_date, due_date);
   } else {

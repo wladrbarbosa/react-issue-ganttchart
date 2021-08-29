@@ -1,4 +1,4 @@
-import { isValidIDName, isValidVariable, validVariable } from './CommonHelper';
+import { isValidIDName, isValidVariable, validVariable, getGanttStartDate, getGanttDueDate, getGanttDuration } from './CommonHelper';
 
 describe('isValidVariable', () => {
   test('true', () => {
@@ -45,5 +45,49 @@ describe('isValidIDName', () => {
   });
   test('false', () => {
     expect(isValidIDName({ name: 'test1' })).toBe(false);
+  });
+});
+
+describe('getGanttStartDate', () => {
+  test('true', () => {
+    expect(getGanttStartDate(new Date('2021/2/13'), new Date('2021/2/15'), new Date('2021/2/13'))).toBe('2021/2/13');
+  });
+  test('true', () => {
+    expect(getGanttStartDate(null, new Date('2021/2/15'), new Date('2021/2/13'))).toBe('2021/2/13');
+  });
+  test('true', () => {
+    expect(getGanttStartDate(new Date('2021/2/13'), null, new Date('2021/2/13'))).toBe('2021/2/13');
+  });
+  test('true', () => {
+    expect(getGanttStartDate(null, null, new Date('2021/2/13'))).toBe('2021/2/13');
+  });
+});
+
+
+describe('getGanttDueDate', () => {
+  test('true', () => {
+    expect(getGanttDueDate(new Date('2021/2/13'), new Date('2021/2/15'), new Date('2021/2/13'))).toStrictEqual(new Date('2021/2/15'));
+  });
+  test('true', () => {
+    expect(getGanttDueDate(null, new Date('2021/2/15'), new Date('2021/2/13'))).toStrictEqual(new Date('2021/2/15'));
+  });
+  test('true', () => {
+    expect(getGanttDueDate(new Date('2021/2/13'), null, new Date('2021/2/13'))).toStrictEqual(new Date('2021/2/13'));
+  });
+  test('true', () => {
+    expect(getGanttDueDate(null, null, new Date('2021/2/13'))).toStrictEqual(new Date('2021/2/13'));
+  });
+});
+
+
+describe('getGanttDuration', () => {
+  test('true', () => {
+    expect(getGanttDuration(new Date('2021/2/13'), new Date('2021/2/15'), new Date('2021/2/13'))).toStrictEqual(3);
+  });
+  test('true', () => {
+    expect(getGanttDuration(null, new Date('2021/2/15'), new Date('2021/2/13'))).toStrictEqual(3);
+  });
+  test('true', () => {
+    expect(getGanttDuration(null, null, new Date('2021/2/13'))).toStrictEqual(null);
   });
 });
